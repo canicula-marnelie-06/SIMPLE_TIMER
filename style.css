@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Bebas+Neue&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL COLOR PALETTE & RESET
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --black: #101010;     /* Primary text & accents */
+  --white: #f5f2ec;     /* Off-white background (not pure white for warmth) */
+  --red:   #e63022;     /* Running state highlight */
+  --mid:   #888;        /* Secondary text (paused/stale states) */
+  --rule:  #c8c4bc;     /* Subtle dividers */
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+} /* Universal reset for consistent layout across browsers */
+
+/* ═══════════════════════════════════════════════════════════════
+   BODY & LAYOUT
+   Perfect centering with flexbox for any screen size
+   ═══════════════════════════════════════════════════════════════ */
+body {
+  background: var(--white);
+  color: var(--black);
+  min-height: 100vh;                        /* Full viewport height minimum */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;  /* Monospace for terminal aesthetic */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN CONTAINER
+   Fixed-width card with double border + drop shadow
+   ═══════════════════════════════════════════════════════════════ */
+.container {
+  width: 480px;                             /* Fixed width for consistent proportions */
+  padding: 48px 48px 40px;                  /* Asymmetric padding (more top) */
+  border: 5px solid rgba(4, 94, 91, 0.872); /* Teal accent border with transparency */
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 rgba(126, 207, 237, 0.872); /* Cyan drop shadow */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER SECTION
+   Compact title bar with issue tracker styling
+   ═══════════════════════════════════════════════════════════════ */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+header .label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;                      /* Wide spacing for impact */
+  color: var(--black);
+}
+
+header .issue {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--mid);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VISUAL DIVIDERS
+   Single-pixel rules for section separation
+   ═══════════════════════════════════════════════════════════════ */
+.rule {
+  height: 1px;
+  background: var(--black);
+  margin-bottom: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TIME DISPLAY BLOCK
+   Hero section with massive typography
+   ═══════════════════════════════════════════════════════════════ */
+.time-block {
+  padding: 20px 0;
+  border-bottom: 2px solid var(--black);    /* Thick bottom rule */
+}
+
+#timer {
+  font-family: 'Bebas Neue', sans-serif;    /* Ultra-bold display font */
+  font-size: 100px;                         /* Massive scale for impact */
+  letter-spacing: 8px;                      /* Extra wide spacing */
+  color: var(--black);
+  display: block;
+  line-height: 1;                           /* Tight line height */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATUS INDICATOR
+   Dynamic feedback with glow effects & state transitions
+   ═══════════════════════════════════════════════════════════════ */
+.status-line {
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: var(--black);
+  margin-bottom: 36px;
+  padding: 10px;
+  border: 3px solid rgba(4, 94, 91, 0.872); /* Matching container accent */
+  text-shadow: 0 0 8px var(--black);        /* Glowing text effect */
+  transition: all 0.3s;                     /* Smooth state changes */
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 rgba(93, 190, 235, 0.872);
+}
+
+.status-line strong {
+  color: var(--black);
+  text-shadow: 0 0 8px var(--black);
+  transition: all 0.3s;
+}
+
+/* State-specific colors */
+.status-line strong.running { color: var(--red); }   /* Active = danger red */
+.status-line strong.paused  { color: var(--mid); }   /* Inactive = muted gray */
+.status-line strong.reset   { color: var(--black); } /* Ready = primary black */
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTROL BUTTONS
+   3-column CSS Grid with hover animations
+   ═══════════════════════════════════════════════════════════════ */
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);    /* Equal 3-column layout */
+  gap: 12px;
+  margin-bottom: 32px;
+  border-radius: 20px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  border: 2px solid var(--black);
+  background: var(--white);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s; /* Fast hover response */
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 rgba(93, 190, 235, 0.872); /* Consistent shadow */
+}
+
+.btn:hover {
+  /* Cyberpunk gradient sweep on hover */
+  background: linear-gradient(90deg, #eb1197, #03e5f5); 
+  color: var(--white);
+  transform: translate(-2px, -2px);         /* Lift effect */
+  box-shadow: 4px 4px 0 rgba(67, 79, 241, 0.872); /* Purple shadow on hover */
+}
+
+.btn .key {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.btn .label-text {
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   Subtle attribution with rule separator
+   ═══════════════════════════════════════════════════════════════ */
+footer {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--mid);
+  border-top: 1px solid var(--rule);        /* Light rule separator */
+  padding-top: 16px;
+}
