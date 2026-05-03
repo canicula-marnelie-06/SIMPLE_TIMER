@@ -120,8 +120,8 @@ header .issue {
 }
 
 /* State-specific colors */
-.status-line strong.running { color: var(--red); }   /* Active = danger red */
-.status-line strong.paused  { color: var(--mid); }   /* Inactive = muted gray */
+.status-line strong.running { color: var(--black); }   /* Active = danger red */
+.status-line strong.paused  { color: var(--red); }   /* Inactive = muted gray */
 .status-line strong.reset   { color: var(--black); } /* Ready = primary black */
 
 /* ═══════════════════════════════════════════════════════════════
