@@ -48,7 +48,7 @@ function resetTimer() {
   isRunning = false;
   elapsed   = 0;                            // Reset elapsed time to zero
   render();                                 // Update display immediately
-  updateStatus('READY', 'reset');
+  updateStatus('RESET', 'reset');
 }
 
 // ── Button Listeners ──────────────────────────────────────────
